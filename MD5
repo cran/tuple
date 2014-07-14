@@ -1,0 +1,12 @@
+4f631b881c4d6e2a8827a2153200c24d *DESCRIPTION
+e6a600fd5e1d9cbde2d983680233ad02 *LICENSE.note
+7dccaa940bcfe889a9759a2ad58d4a48 *NAMESPACE
+77552d12b556af684de1790084d30946 *R/tuple-package.R
+826f4b4103a73f03d862740e46ce7e16 *R/tuple.package.R
+7bbd37147fc38a5511f294d6daaae6ec *inst/CITATION
+5ec5737f8755451f1f9c0a5b5a03d3cd *man/duplicate.Rd
+b6947b2a9cdf1f5bf6ee4cd7e391875a *man/matchAll.Rd
+033f9be7c8f05c0d292c0788641963ea *man/orphan.Rd
+92b1a3a6a7ced8436392397de8488cd5 *man/triplicate.Rd
+0c7212abf291917dbed62003067160c7 *man/triplicated.Rd
+1af353d5d568e4d3741b01bdea5b3c66 *man/tuple-package.Rd
