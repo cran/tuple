@@ -13,13 +13,10 @@ Finds values that occur exactly once in a vector.
 }
 \details{
 Returns the unique values in the same order that they would be
-returned in a call to \code{\link[base]{unique}}.
+  returned in a call to \code{\link[base]{unique}}.
 }
 \examples{
 orphan(c(NA, 1:3, 3, 4:6, 3, NA, 4))
-}
-\author{
-Emmanuel Lazaridis <emmanuel@lazaridis.eu>
 }
 \seealso{
 \code{\link[base]{unique}}

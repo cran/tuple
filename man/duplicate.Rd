@@ -13,20 +13,18 @@ Finds values that occur exactly twice in a vector.
 }
 \details{
 Returns the duplicated values in the same order that they would be
-returned in a call to \code{\link[tuple]{orphan}}.  This fundamentally
-differs from \code{\link[base]{duplicated}}, which returns
-a logical vector that is \code{TRUE} when it runs into any but
-the first occurrence of a value (and is therefore dependent on
-the direction of testing of the vector).
+  returned in a call to \code{\link[tuple]{orphan}}.  This fundamentally
+  differs from \code{\link[base]{duplicated}}, which returns
+  a logical vector that is \code{TRUE} when it runs into any but
+  the first occurrence of a value (and is therefore dependent on
+  the direction of testing of the vector).
 }
 \examples{
 duplicate(c(NA, 1:3, 3, 4:6, 3, NA, 4))
 }
-\author{
-Emmanuel Lazaridis <emmanuel@lazaridis.eu>
-}
 \seealso{
-\code{\link[base]{duplicated}}
+\code{\link[base]{unique}} for similar output, and
+         \code{\link{duplicated}} for the underlying calculations
 }
 \keyword{duplicate,}
 \keyword{duplicated,}

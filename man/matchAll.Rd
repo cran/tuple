@@ -11,24 +11,21 @@ matchAll(x, table)
 \item{table}{The lookup table as a vector.}
 }
 \description{
-Extends the functionality of \code{\link[base]{match}} to identify all matching
-values, instead of just the first one.
+Extends the functionality of \code{\link[base]{match}} to identify
+  all matching values, instead of just the first one.
 }
 \details{
 Returns an integer vector of the index in \code{table} for all
-the matches. The result is not sorted in numerical index order when
-more than one value is sought to be matched.
-Instead, the matches of the first value in \code{x} are listed first,
-followed by matches to the second value in \code{x} and so on.
-Values of \code{NA} are treated as data.
+  the matches. The result is not sorted in numerical index order when
+  more than one value is sought to be matched.
+  Instead, the matches of the first value in \code{x} are listed first,
+  followed by matches to the second value in \code{x} and so on.
+  Values of \code{NA} are treated as data.
 }
 \examples{
 matchAll(3, c(1:3, 3, 4:6, 3, NA, 4))
 matchAll(3:4, c(1:3, 3, 4:6, 3, NA, 4))
 matchAll(c(NA, 3:4), c(NA, 1:3, 3, 4:6, 3, NA, 4))
-}
-\author{
-Emmanuel Lazaridis <emmanuel@lazaridis.eu>
 }
 \seealso{
 \code{\link[base]{match}}

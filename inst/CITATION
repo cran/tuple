@@ -1,13 +1,13 @@
 bibentry("Manual",
-    title="tuple: Find every match, or orphan, duplicate or triplicate values",
+    title="tuple: Find every match, or orphan, duplicate, triplicate, or other replicated values",
     author="Emmanuel Lazaridis",
     year="2014",
-    note="(Version 0.3-06)",
+    note="(Version 0.4-01)",
     url="http://statistics.lazaridis.eu",
 
     textVersion =
     paste("Lazaridis, E. (2014). ",
-        "tuple: Find every match, or orphan, duplicate or triplicate values (Version 0.3-06). ",
+        "tuple: Find every match, or orphan, duplicate, triplicate, or other replicated values (Version 0.4-01). ",
         "Available from http://statistics.lazaridis.eu",
         sep=""),
 

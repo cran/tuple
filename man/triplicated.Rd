@@ -10,7 +10,7 @@ triplicated(x, ..., fromLast = FALSE)
 
 \item{fromLast}{A logical indicating if triplication should be considered from
 the reverse side, i.e., the two last (or rightmost) of identical
-elements would return \code{FALSE}}
+elements would return \code{FALSE}.}
 
 \item{...}{Other optional arguments are ignored.}
 }
@@ -19,14 +19,11 @@ Finds values that are repeated at least three times in a vector.
 }
 \details{
 Returns a logical vector that is \code{TRUE} when it runs into
-any but the first or second occurrences of a value, analogous
-to \code{\link[base]{duplicated}}.
+  any but the first or second occurrences of a value, analogous
+  to \code{\link[base]{duplicated}}.
 }
 \examples{
 triplicated(c(NA, 1:3, 3, 4:6, 3, NA, 4, 3))
-}
-\author{
-Emmanuel Lazaridis <emmanuel@lazaridis.eu>
 }
 \seealso{
 \code{\link[base]{duplicated}}
