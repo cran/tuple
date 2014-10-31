@@ -51,9 +51,12 @@
 #'           released to CRAN.                                     \cr
 #' \tab \tab The implementation of
 #'           \code{\link{triplicate}} has not changed              \cr
-#' \tab \tab from version 0.3-06, but it will be changed to call        \cr
+#' \tab \tab from version 0.3-06, but it will be changed to call   \cr
 #' \tab \tab \code{\link{tuplicate}} with \code{tuple = 3}
 #'           in a future release.                                  \cr
+#' 0.4-02  \tab Added \code{\link{matchNone}}                 \tab
+#'     This function returns a character string, based             \cr
+#' \tab \tab on the table, that does not appear in the data.       \cr
 #' }
 NULL
 
@@ -96,6 +99,82 @@ matchAll <- function(x, table) {
   if(length(myRecords)>1 && any(is.na(myRecords)))
     myRecords <- myRecords[!is.na(myRecords)]
   return(myRecords)
+}
+
+#' @title
+#'   Return a Symbol That Matches No Values
+#' @description
+#'   The tag value is chosen from among special characters so
+#'   that it does not appear anywhere in the reference input data.
+#'   The shortest possible tag is chosen.
+#' @details
+#'   This function is used in other packages by the same author
+#'   to extend missing data handling in R. It provides for
+#'   flexible missing data identifiers where needed by an
+#'   S4 class, and similar unmatched identifiers for other
+#'   dirty data problems.
+#' @param x
+#'   A vector or matrix.
+#' @param table
+#'   The lookup table against which to seek non-matches.
+#'   This can be a simple vector, or it can be a list of
+#'   two vectors.
+#' @return
+#'   A string composed of the strings in the \code{table}.
+#'   The default list choses the first non-matching value
+#'   out of 179 values that are unlikely to be used in
+#'   most real sets of data.
+#'   If only \code{table} is specified, the possible
+#'   values for a non-matching string, ordered from the
+#'   most to the least preferable, are returned.
+#' @examples
+#' my.x <- c(1,2,3,2,3,1,2)
+#' matchNone(my.x)
+#' matchNone(c(my.x,"."))
+#' matchNone(c(my.x,".","!"))
+#' matchNone(c(my.x,".","!","/"))
+#' matchNone(c(my.x,".","!","/",".."))
+#' matchNone(table = ".")
+#' @export
+matchNone <- function(x, table = list(c(".", "!", "/"), c("NA", "na"))) {
+  if(is.list(table)) my.blocks1 <- table[[1]]
+  else my.blocks1 <- table
+  my.blocks2 <- apply(expand.grid(my.blocks1, my.blocks1), 1,
+                      function(Y) { paste(Y, collapse = "") })
+  if(is.list(table) && length(table)>1)
+    my.blocks2 <- c(my.blocks2, table[[2]])
+  my.blocks3 <- c(apply(expand.grid(my.blocks1, my.blocks2), 1,
+                        function(Y) { paste(Y, collapse = "") }),
+                  apply(expand.grid(my.blocks2, my.blocks1), 1,
+                        function(Y) { paste(Y, collapse = "") }))
+  my.blocks4 <- apply(expand.grid(my.blocks1, my.blocks2,
+                                  my.blocks1), 1,
+                      function(Y) { paste(Y, collapse = "") })
+  my.preferred <- c(my.blocks1, my.blocks2, my.blocks3, my.blocks4)
+  if(missing(x)) return(my.preferred)
+  if(is.factor(x)) my.data <- levels(x)
+  else my.data <- as.character(x)
+  my.in <- TRUE
+  my.counter <- -1
+  my.sample.size <- 4
+  while(all(my.in)) {
+    if(my.counter > -1) {
+      if(my.counter == 0)
+        my.preferred <-
+            apply(expand.grid(my.blocks1, my.blocks3, my.blocks1),
+                  1, function(Y) { paste(Y, collapse = "") })
+      else my.preferred <-
+               paste(sample(c(letters, LETTERS, my.blocks1),
+                            my.sample.size), collapse = "")
+    }
+    my.in <- my.preferred %in% my.data
+    my.counter <- my.counter + 1
+    if(my.counter > 1000) {
+      my.sample.size <- my.sample.size + 1
+      my.counter <- 1
+    }
+  }
+  return(my.preferred[!my.in][1])
 }
 
 #' @name not-in
